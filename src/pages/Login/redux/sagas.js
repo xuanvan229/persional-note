@@ -1,7 +1,6 @@
 import { takeLatest, put, call, all, fork, select } from 'redux-saga/effects';
 import * as actionType from './actionType';
 import * as actions from './action';
-import * as actionsUser from '../../User/redux/action';
 
 import * as api from './api';
 
