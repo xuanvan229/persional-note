@@ -30,9 +30,9 @@ const requestConfig = {
   timeout: 120000,
   withCredentials: false,
   onUploadProgress: function (progressEvent) {
-    var percentCompleted = Math.round(
-      (progressEvent.loaded * 100) / progressEvent.total
-    );
+    // var percentCompleted = Math.round(
+    //   (progressEvent.loaded * 100) / progressEvent.total
+    // );
   },
   // `auth` indicates that HTTP Basic auth should be used, and supplies credentials.
   // This will set an `Authorization` header, overwriting any existing

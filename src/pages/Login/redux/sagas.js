@@ -4,7 +4,6 @@ import * as actions from './action';
 
 import * as api from './api';
 
-const getaccess_token = (state) => state.login.access_token;
 const getaccess_token_expired = (state) => state.login.access_token_expired;
 const getrefresh_token = (state) => state.login.refresh_token;
 const getrefresh_token_expired = (state) => state.login.refresh_token_expired;
@@ -36,7 +35,6 @@ function* submitLogin(action) {
 }
 
 function* refreshTokenSaga(action) {
-  const access_token = yield select(getaccess_token);
   const access_token_expired = yield select(getaccess_token_expired);
   const refresh_token = yield select(getrefresh_token);
   const refresh_token_expired = yield select(getrefresh_token_expired);

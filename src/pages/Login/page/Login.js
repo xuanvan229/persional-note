@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from 'react';
-// import {FaPhoenixFramework} from 'react-icons/md';
+import React, { useState } from 'react';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
-// import logo from '../../../assets/images/logo.png'
-// import logo from '../../../assets/i'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Input from '../../../components/Input';
-import { Redirect, Route, Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import logo from '../../../assets/images/logo.png';
@@ -16,11 +13,7 @@ const Login = (props) => {
   const submitLogin = ({ email, password }) => {
     props.sendLogin({ email, password }, toast);
   };
-  // useEffect(() => {
-  //   if (props.isLogin) {
-  //     return <Redirect to="/dashboard" />;
-  //   }
-  // },[props.isLogin])
+
   if (props.isLogin) {
     return <Redirect to="/" />;
   }
@@ -64,7 +57,7 @@ const Login = (props) => {
       <div className="xl:w-1/4 md:w-5/12 w-full flex flex-col bg-white">
         <div className="flex flex-1 justify-center flex-col items-center md:items-start w-10/12 p-8 mx-auto">
           <div className="w-full bg-white">
-            <img className="w-16 h-16" src={logo} />
+            <img className="w-16 h-16" src={logo} alt="logo" />
           </div>
           <Formik
             validateOnBlur={true}

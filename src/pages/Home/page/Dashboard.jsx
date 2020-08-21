@@ -1,18 +1,11 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 import React, { useState } from 'react';
-import { post, get, put, download } from '../../../utils/api';
+import { get } from '../../../utils/api';
 import 'react-quill/dist/quill.snow.css';
-import { format, compareAsc } from 'date-fns';
+import { format } from 'date-fns';
 
 import { FaFacebookSquare, FaGithub } from 'react-icons/fa';
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Switch,
-  Route,
-  NavLink,
-  Link,
-  withRouter,
-} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { useEffect } from 'react';
 
 const getNotes = () => {
@@ -28,15 +21,15 @@ const Home = (props) => {
   }, []);
 
   const toHex = (v) => {
-    var hash = 0;
+    let hash = 0;
     if (v.length === 0) return hash;
-    for (var i = 0; i < v.length; i++) {
+    for (let i = 0; i < v.length; i++) {
       hash = v.charCodeAt(i) + ((hash << 5) - hash);
       hash = hash & hash;
     }
-    var color = '#';
-    for (var i = 0; i < 3; i++) {
-      var value = (hash >> (i * 8)) & 255;
+    let color = '#';
+    for (let i = 0; i < 3; i++) {
+      let value = (hash >> (i * 8)) & 255;
       color += ('00' + value.toString(16)).substr(-2);
     }
     return color;
@@ -51,30 +44,31 @@ const Home = (props) => {
     if (result.status === 200) {
       setData(result.data.data.reverse());
     }
-    console.log('result', result);
   };
   return (
     <div className="flex w-screen min-h-screen text-black">
       <div className="w-1/3 p-4 border-r h-screen overflow-auto">
         {data.map((item) => (
           <div
-            className="mb-4 cursor-pointer"
+            className="mb-2 cursor-pointer pb-2"
             onClick={() => setNote(item)}
             key={item.id}
           >
-            <h2 className="text-blue-500 font-bold ">{item.title}</h2>
+            <h2 className="text-black text-xl font-bold mb-2">{item.title}</h2>
             <div className="mt-1">
               {categoryToList(item.category).map((v) => (
                 <span
                   key={v}
-                  className="p-1 text-xs rounded-md mr-2 mt-1 text-white"
+                  className={`${
+                    v === '' ? 'hidden' : 'inline-block'
+                  } py-1 px-2 text-xs rounded-sm mr-2 mt-1 text-white`}
                   style={{ backgroundColor: `${toHex(v)}` }}
                 >
                   {v}
                 </span>
               ))}
             </div>
-            <div className="mt-1    ">
+            <div className="mt-1 text-gray-700">
               {format(new Date(item.created_at), 'MM/dd/yyyy')}
             </div>
           </div>
@@ -100,7 +94,8 @@ const Home = (props) => {
             </p>
             <ul className="pl-4 mt-4">
               <li className="text-xl">
-                🔭 I’m currently working on Reactjs, Fluter, Golang...
+                <span role="img">🔭</span> I’m currently working on Reactjs,
+                Fluter, Golang...
               </li>
               <li className="text-xl">
                 🌱 I’m currently learning on Competitive Programming.
@@ -119,6 +114,7 @@ const Home = (props) => {
               <a
                 className="text-black"
                 href="https://www.facebook.com/xuanyeuloan"
+                rel="noopener noreferrer"
                 target="_blank"
               >
                 <FaFacebookSquare className="text-4xl mr-4" />
@@ -126,6 +122,7 @@ const Home = (props) => {
               <a
                 className="text-black"
                 href="https://www.github.com/xuanvan229"
+                rel="noopener noreferrer"
                 target="_blank"
               >
                 <FaGithub className="text-4xl mr-4" />
